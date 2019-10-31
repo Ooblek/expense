@@ -61,7 +61,7 @@ export default class Add extends React.Component {
 
                 }
                 else{
-                    total += d.amount
+                    total += parseInt(d.amount);
                 }
             }
             this.setState({total: total});
@@ -86,86 +86,93 @@ export default class Add extends React.Component {
     render(){
         
         return(
-            <View style = {styles.container}>
-                <Container>
-                    <Text style = {styles.textSize}>Amount: </Text>
-                    <View style={{borderWidth: 1, margin: "1%"}}>
-                        <TextInput keyboardType={'numeric'}  onChangeText={(text) => this.setState({amount: text})} ></TextInput>
-                    </View>
-                    <View style= {{margin: "-1%", marginTop: "5%"}}>
-                        <ListItem>
-                           <CheckBox
-                            value={this.state.checked}
-                            onValueChange={() => this.setState({ checked: !this.state.checked, type: "Credit" })}
-                            />
-                            <Body style = {{margin: "2%"}}><Text  style = {styles.textSize}>Credit</Text>
-                            </Body>
-                           
-                        </ListItem>
-                     
-                    </View>
-                     <View style= {{margin: "-1%", marginTop: "5%"}}>
-                        <ListItem>
+            <ScrollView>
+                <View style = {styles.container}>
+                    <Container>
+                        <Text style = {styles.textSize}>Amount: </Text>
+                        <View style={{borderWidth: 1, margin: "1%"}}>
+                            <TextInput keyboardType={'numeric'}  onChangeText={(text) => this.setState({amount: text})} ></TextInput>
+                        </View>
+                        <View style= {{margin: "-1%", marginTop: "5%"}}>
+                            <ListItem>
                             <CheckBox
-                            value={!this.state.checked}
-                            onValueChange={() => this.setState({ checked: !this.state.checked, type: "Debit" })}
-                            />
+                                value={this.state.checked}
+                                onValueChange={() => this.setState({ checked: !this.state.checked, type: "Credit" })}
+                                />
+                                <Body style = {{margin: "2%"}}><Text  style = {styles.textSize}>Credit</Text>
+                                </Body>
                             
-                            <Body style = {{margin: "2%"}}><Text  style = {styles.textSize}>Debit</Text>
-                            </Body>
-                           
-                        </ListItem>
-                     
-                    </View>
-                    
-                 <Text style = {{fontSize: 18,
-        fontFamily: "sans-serif-medium", marginTop: "5%"}}>Reason: </Text>
-                    <View style={{borderWidth: 1, margin: "1%"}}>
-                        <TextInput   onChangeText={(text) => this.setState({reason: text})} ></TextInput>
-                    </View>
+                            </ListItem>
+                        
+                        </View>
+                        <View style= {{margin: "-1%", marginTop: "5%"}}>
+                            <ListItem>
+                                <CheckBox
+                                value={!this.state.checked}
+                                onValueChange={() => this.setState({ checked: !this.state.checked, type: "Debit" })}
+                                />
+                                
+                                <Body style = {{margin: "2%"}}><Text  style = {styles.textSize}>Debit</Text>
+                                </Body>
+                            
+                            </ListItem>
+                        
+                        </View>
+                        
+                    <Text style = {{fontSize: 18,
+            fontFamily: "sans-serif-medium", marginTop: "5%"}}>Reason: </Text>
+                        <View style={{borderWidth: 1, margin: "1%"}}>
+                            <TextInput   onChangeText={(text) => this.setState({reason: text})} ></TextInput>
+                        </View>
 
-                    <View style = {{margin: "2%", marginTop: "5%"}}>
-                    <DatePicker
-                       
-                        locale={"en"}
-                        timeZoneOffsetInMinutes={undefined}
-                        modalTransparent={false}
-                        animationType={"fade"}
-                        androidMode={"default"}
-                        placeHolderText="Select date"
-                        textStyle={{ color: "green" }}
-                        placeHolderTextStyle={{ color: "#d3d3d3" }}
-                        onDateChange={(date) => this.setState({date: date.toString().substr(4, 12)})}
-                        disabled={false}
-                        />
-                    </View>
+                        <View style = {{alignItems: "flex-start"}}>                     
+
+                            <View style = {{margin: "2%", marginTop: "5%"}}>
+                            <DatePicker
+                            
+                                locale={"en"}
+                                timeZoneOffsetInMinutes={undefined}
+                                modalTransparent={false}
+                                animationType={"slide"}
+                                androidMode={"default"}
+                                placeHolderText="Select date"
+                                textStyle={{ color: "green" }}
+                                placeHolderTextStyle={{ color: "#d3d3d3" }}
+                                onDateChange={(date) => this.setState({date: date.toString().substr(4, 12)})}
+                                disabled={false}
+                                style = {{colour: "red"}}
+                                
+                                />
+                            </View>
+                        </View>
 
 
-                     <View style= {{margin: "-1%", marginTop: "5%"}}>
-                       
-                           <Button block success onPress = {() => {if(!this.state.amount || !this.state.reason || !this.state.type || !this.state.date){Alert.alert("please fill in all the fields")} 
-                                                                   else{this.setData(); 
-                                                                   console.log(this.state);
-                                                                   
-                                                                   this.props.navigation.navigate('Home', {
-                                                                    onGoBack: () => this.refresh(),
-                                                                  });
-                                                                   
-                                                    
-                                                                   
-                                                                   }}}><Text style = {{fontFamily: "sans-serif-black", color: "white"}}>SUBMIT</Text></Button>
-                           
-                     
-                     
-                    </View>
-          
-          
-                </Container>
-
-               
-              
+                        <View style= {{margin: "-1%", marginTop: "5%"}}>
+                        
+                            <Button block success onPress = {() => {if(!this.state.amount || !this.state.reason || !this.state.type || !this.state.date){Alert.alert("please fill in all the fields")} 
+                                                                    else{this.setData(); 
+                                                                    console.log(this.state);
+                                                                    
+                                                                    this.props.navigation.navigate('Home', {
+                                                                        onGoBack: () => this.refresh(),
+                                                                    });
+                                                                    
+                                                        
+                                                                    
+                                                                    }}}><Text style = {{fontFamily: "sans-serif-black", color: "white"}}>SUBMIT</Text></Button>
+                            
+                        
+                        
+                        </View>
             
-            </View>
+            
+                    </Container>
+
+                
+                
+                
+                </View>
+            </ScrollView>
         )
     }
 }

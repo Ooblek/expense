@@ -42,7 +42,7 @@ export default class Chart extends React.Component {
                       
                 }
                 else{
-                    total += d.amount
+                    total += parseInt(d.amount);
                     
                 }
                 console.log(dateData.sort())

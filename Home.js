@@ -57,7 +57,7 @@ class Home extends React.Component {
                     total -= d.amount;
                 }
                 else{
-                    total += d.amount
+                    total += parseInt(d.amount);
                 }
             }
             this.setState({total: total});
